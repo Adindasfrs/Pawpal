@@ -14,7 +14,9 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <category android:name="android.intent.category.BROWSABLE" />
+
             <data android:scheme="https" />
         </intent>
     </queries>
@@ -29,11 +31,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pawpal"
         tools:targetApi="31">
-
+        <activity
+            android:name=".userinterface.LibraryActivity"
+            android:exported="false" />
         <activity
             android:name=".userinterface.MainActivity"
             android:exported="false" />
-
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -52,8 +55,7 @@
         <activity
             android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps">
-        </activity>
+            android:label="@string/title_activity_maps"></activity>
         <activity
             android:name=".userinterface.AddStoryActivity"
             android:exported="false" />
@@ -69,6 +71,7 @@
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

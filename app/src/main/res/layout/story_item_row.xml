@@ -31,14 +31,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 card_view:cardCornerRadius="10dp">
 
-                <ImageView
-                    android:id="@+id/imageStory"
-                    android:layout_width="371dp"
-                    android:layout_height="200dp"
-                    android:contentDescription="@string/content"
-                    android:scaleType="centerCrop"
-                    app:setPhoto='@{itemStory.photoUrl}'
-                    tools:srcCompat="@drawable/spiderman" />
 
             </androidx.cardview.widget.CardView>
 
