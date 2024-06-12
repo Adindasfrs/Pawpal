@@ -72,13 +72,8 @@ class HomePageActivity : AppCompatActivity() {
 
 
 
-    private fun showNoData(isNoData: Boolean) {
-        binding.noDataFound.visibility = if (isNoData) View.VISIBLE else View.GONE
-        binding.tvNoDataFound.visibility = if (isNoData) View.VISIBLE else View.GONE
-    }
 
     private fun setUserData(storyList: List<StoryDetail>) {
-        showNoData(storyList.isEmpty())
 
         val adapter = StoryListAdapter(storyList)
         binding.rvStories.adapter = adapter
