@@ -158,6 +158,7 @@ class MainActivity : AppCompatActivity() {
         return binding.CVEmail.isEmailValid && binding.PasswordLogin.isPasswordValid
     }
 
+    /// tes
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
