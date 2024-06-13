@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/iconLogin"
-        android:layout_width="114dp"
-        android:layout_height="109dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/iconLogin"
         android:src="@drawable/pawpal"
