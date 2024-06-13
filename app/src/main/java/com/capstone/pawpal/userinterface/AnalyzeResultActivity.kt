@@ -3,6 +3,7 @@ package com.capstone.pawpal.userinterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.capstone.pawpal.R
 import com.capstone.pawpal.databinding.ActivityAnalyzeResultBinding
 
 class AnalyzeResultActivity : AppCompatActivity() {
@@ -24,6 +25,6 @@ class AnalyzeResultActivity : AppCompatActivity() {
         // Misalnya: Glide.with(this).load(imageUri).into(binding.resultImage)
 
         // Dummy placeholder untuk gambar
-        binding.resultImage.setImageResource(R.drawable.default_image) // Ganti dengan gambar hasilnya jika ada
+        binding.resultImage.setImageResource(R.drawable.baseline_photo_24) // Ganti dengan gambar hasilnya jika ada
     }
 }
