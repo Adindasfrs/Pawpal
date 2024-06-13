@@ -52,7 +52,7 @@ class ImageClassifierHelper(
             Log.e(TAG, e.message.toString())
         }
     }
-
+//oyy
     fun classifyStaticImage(imageUri: Uri) {
         // TODO: mengklasifikasikan imageUri dari gambar statis.
 
