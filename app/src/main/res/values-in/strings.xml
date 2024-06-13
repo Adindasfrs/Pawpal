@@ -4,25 +4,21 @@
     <string name="iconLogin">Hanya icon hiasan untuk login</string>
     <string name="iconRegister">Hanya icon hiasan untuk register</string>
     <string name="registerDescription">Silahkan masukkan data akun kamu</string>
-    <string name="storySplash">Ga punya temen cerita? ceritain di sini aja!</string>
-    <string name="bottomSplash">Dibuat oleh Bangkit Cohort</string>
+    <string name="bottomSplash">Selamat Datang di Aplikasi PawPal</string>
     <string name="createAccount">Buat Akun</string>
     <string name="btnFloating">untuk membuat konten baru</string>
-    <string name="noData">Data tidak ditemukan</string>
     <string name="changeLanguage">Ganti Bahasa</string>
     <string name="home">Beranda</string>
     <string name="error_load">Gagal memuat data. Pesan Error:</string>
     <string name="refresh">Muat Ulang</string>
     <string name="scrollView">For scrolling item</string>
     <string name="detail_title">%1$s\'s Story</string>
-    <string name="post_as">Bagikan cerita sebagai </string>
+    <string name="post_as">Bagikan Foto Kucingmu,</string>
     <string name="post_users">Buat cerita baru</string>
     <string name="message">Pesan  :</string>
 
     <string name="cameraChoose">Kamera</string>
     <string name="galleryChoose">Galeri</string>
-    <string name="descriptionStory">Deskripsi Story</string>
-    <string name="btnPost">Bagikan Story</string>
     <string name="choose_picture">Pilih Gambar</string>
     <string name="choose_camera">Pilih Kamera</string>
 
@@ -70,7 +66,6 @@
     <string name="package_name">com.capstone.pawpal</string>
 
     <string name="imageStoryUploadDesc">Ini adalah gambar ketika foto dipilih</string>
-    <string name="imageSplashDesc">Ini adalah logo bangkit di splashscreen</string>
     <string name="warningAddImage">Upload foto terlebih dahulu</string>
     <string name="warningAddDescription">Tambahkan deskripsi terlebih dahulu</string>
 </resources>

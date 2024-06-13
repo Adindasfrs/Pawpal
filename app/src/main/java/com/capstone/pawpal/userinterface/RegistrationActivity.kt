@@ -38,7 +38,7 @@ class RegistrationActivity : AppCompatActivity() {
             ViewModelProvider(this, ViewModelFactory(pref))[UserLoginViewModel::class.java]
         userLoginViewModel.getLoginSession().observe(this) { sessionTrue ->
             if (sessionTrue) {
-                val intent = Intent(this@RegistrationActivity, HomePageActivity::class.java)
+                val intent = Intent(this@RegistrationActivity, AddImageActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }

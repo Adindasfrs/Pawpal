@@ -4,23 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userinterface.AddStoryActivity">
+    tools:context=".userinterface.AddImageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp">
-
-        <Button
-            android:id="@+id/btnPostStory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/btnPost"
-            android:backgroundTint="#9C27B0"
-            app:layout_constraintEnd_toEndOf="@+id/tv_des"
-            app:layout_constraintStart_toStartOf="@+id/tv_des"
-            app:layout_constraintTop_toBottomOf="@+id/tv_des" />
+        android:paddingBottom="80dp">
 
         <TextView
             android:id="@+id/tvUsers"
@@ -41,21 +30,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/descriptionStory"
             app:layout_constraintEnd_toEndOf="@+id/tvUsers"
             app:layout_constraintStart_toStartOf="@+id/tvUsers"
             app:layout_constraintTop_toBottomOf="@+id/tvUsers"
-            app:srcCompat="@drawable/baseline_add_photo_alternate_24" />
+            app:srcCompat="@drawable/baseline_photo_24" />
 
         <Button
             android:id="@+id/cameraButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#9C27B0"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="@color/grey"
             android:text="@string/cameraChoose"
             app:layout_constraintEnd_toStartOf="@+id/galleryButton"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="@+id/imageStoryUpload"
             app:layout_constraintTop_toBottomOf="@+id/imageStoryUpload" />
 
@@ -63,32 +51,26 @@
             android:id="@+id/galleryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#9C27B0"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="@color/grey"
             android:text="@string/galleryChoose"
             app:layout_constraintEnd_toEndOf="@+id/imageStoryUpload"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/cameraButton"
             app:layout_constraintTop_toBottomOf="@+id/imageStoryUpload" />
 
-        <EditText
-            android:id="@+id/tv_des"
+        <Button
+            android:id="@+id/analyzeButton"
             android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="32dp"
-            android:autofillHints="Description"
-            android:background="@drawable/border_description"
-            android:gravity="top|left"
-            android:hint="@string/descriptionStory"
-            android:inputType="textMultiLine"
-            android:maxHeight="180dp"
-            android:maxLines="8"
-            android:padding="15dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/imageStoryUpload"
-            app:layout_constraintStart_toStartOf="@+id/imageStoryUpload"
-            app:layout_constraintTop_toBottomOf="@+id/cameraButton"
-            tools:ignore="RtlHardcoded" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/grey"
+            android:text="@string/analyze"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/galleryButton" />
 
         <ProgressBar
             android:id="@+id/progressBarAddStory"

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         userLoginViewModel.getLoginSession().observe(this) { sessionTrue ->
             if (sessionTrue) {
-                val intent = Intent(this@MainActivity, HomePageActivity::class.java)
+                val intent = Intent(this@MainActivity, AddImageActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }

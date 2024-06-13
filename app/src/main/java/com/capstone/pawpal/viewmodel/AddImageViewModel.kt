@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AddStoryViewModel : ViewModel() {
+class AddImageViewModel : ViewModel() {
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
     private val _isLoading = MutableLiveData<Boolean>()

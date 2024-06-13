@@ -32,6 +32,9 @@
         android:theme="@style/Theme.Pawpal"
         tools:targetApi="31">
         <activity
+            android:name=".userinterface.ResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".userinterface.LibraryActivity"
             android:exported="false" />
         <activity
@@ -53,7 +56,7 @@
             android:value="AIzaSyDYgmNs5h_PEVfJOKteT78_UjO6EOmWjtw" />
 
         <activity
-            android:name=".userinterface.AddStoryActivity"
+            android:name=".userinterface.AddImageActivity"
             android:exported="false" />
         <activity
             android:name=".userinterface.DetailActivity"

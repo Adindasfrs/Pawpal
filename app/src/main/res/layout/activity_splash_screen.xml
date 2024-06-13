@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cover"
+    android:background="@color/grey"
     tools:context=".userinterface.SplashScreenActivity">
 
     <TextView
@@ -21,14 +21,14 @@
 
     <ImageView
         android:id="@+id/bangkit"
-        android:layout_width="203dp"
-        android:layout_height="89dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/imageSplashDesc"
+        android:layout_width="345dp"
+        android:layout_height="398dp"
+        android:layout_marginBottom="132dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomSplashScreen"
         app:layout_constraintEnd_toEndOf="@+id/bottomSplashScreen"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/bottomSplashScreen"
-        app:srcCompat="@drawable/download" />
+        app:srcCompat="@drawable/pawpal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

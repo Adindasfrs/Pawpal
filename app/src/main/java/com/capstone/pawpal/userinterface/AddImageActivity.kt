@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -17,19 +16,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.capstone.pawpal.R
 import com.capstone.pawpal.UserPreferences
-import com.capstone.pawpal.databinding.ActivityAddStoryBinding
-import com.capstone.pawpal.viewmodel.AddStoryViewModel
+import com.capstone.pawpal.databinding.ActivityAddImageBinding
+import com.capstone.pawpal.viewmodel.AddImageViewModel
 import com.capstone.pawpal.viewmodel.UserLoginViewModel
 import com.capstone.pawpal.viewmodel.ViewModelFactory
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -37,21 +34,20 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddStoryActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAddStoryBinding
+class AddImageActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAddImageBinding
     private lateinit var token: String
 
     private var getFile: File? = null
     private lateinit var fileFinal: File
 
-    private val addStoryViewModel: AddStoryViewModel by lazy {
-        ViewModelProvider(this)[AddStoryViewModel::class.java]
+    private val addImageViewModel: AddImageViewModel by lazy {
+        ViewModelProvider(this)[AddImageViewModel::class.java]
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddStoryBinding.inflate(layoutInflater)
+        binding = ActivityAddImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.title = resources.getString(R.string.post_users)
@@ -70,60 +66,26 @@ class AddStoryActivity : AppCompatActivity() {
             binding.tvUsers.text = StringBuilder(getString(R.string.post_as)).append(" ").append(it)
         }
 
-        addStoryViewModel.message.observe(this) {
-            showToast(it)
-        }
-
-        addStoryViewModel.isLoading.observe(this) {
+        addImageViewModel.isLoading.observe(this) {
             showLoading(it)
         }
     }
 
     private fun ifClicked() {
-        binding.btnPostStory.setOnClickListener {
-
-            if (getFile == null) {
-                showToast(resources.getString(R.string.warningAddImage))
-                return@setOnClickListener
-            }
-
-            val des = binding.tvDes.text.toString().trim()
-            if (des.isEmpty()) {
-                binding.tvDes.error = resources.getString(R.string.warningAddDescription)
-                return@setOnClickListener
-            }
-
+        binding.analyzeButton.setOnClickListener {
             lifecycleScope.launch {
-                withContext(Dispatchers.IO) {
-                    val file = getFile as File
+                getFile?.let { file ->
+                    fileFinal = compressImageFile(file)
 
-                    var compressedFile: File? = null
-                    var compressedFileSize = file.length()
+                    val requestImageFile = fileFinal.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "photo",
+                        fileFinal.name,
+                        requestImageFile
+                    )
 
-                    // Compress the file until its size is less than or equal to 1MB
-                    while (compressedFileSize > 1 * 1024 * 1024) {
-                        compressedFile = withContext(Dispatchers.Default) {
-                            Compressor.compress(applicationContext, file)
-                        }
-                        compressedFileSize = compressedFile.length()
-                    }
-
-                    fileFinal = compressedFile ?: file
-
+                    // Use the imageMultipart to upload the file to the server
                 }
-
-                // use the upload file to upload to server
-                val requestImageFile =
-                    fileFinal.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                    "photo",
-                    fileFinal.name,
-                    requestImageFile
-                )
-
-                val desPart = des.toRequestBody("text/plain".toMediaType())
-
-                addStoryViewModel.upload(imageMultipart, desPart, token)
             }
         }
 
@@ -133,6 +95,19 @@ class AddStoryActivity : AppCompatActivity() {
 
         binding.galleryButton.setOnClickListener {
             startGallery()
+        }
+    }
+
+    private suspend fun compressImageFile(file: File): File {
+        var compressedFile: File? = null
+        var compressedFileSize = file.length()
+
+        return withContext(Dispatchers.IO) {
+            while (compressedFileSize > 1 * 1024 * 1024) {
+                compressedFile = Compressor.compress(applicationContext, file)
+                compressedFileSize = compressedFile?.length() ?: file.length()
+            }
+            compressedFile ?: file
         }
     }
 
@@ -147,7 +122,6 @@ class AddStoryActivity : AppCompatActivity() {
             val result = BitmapFactory.decodeFile(myFile.path)
             anyPhoto = true
             binding.imageStoryUpload.setImageBitmap(result)
-            binding.tvDes.requestFocus()
         }
     }
 
@@ -166,7 +140,7 @@ class AddStoryActivity : AppCompatActivity() {
         intent.resolveActivity(packageManager)
         createCustomTempFile(application).also {
             val photoURI: Uri = FileProvider.getUriForFile(
-                this@AddStoryActivity,
+                this@AddImageActivity,
                 getString(R.string.package_name),
                 it
             )
@@ -196,10 +170,9 @@ class AddStoryActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            val myFile = uriToFile(selectedImg, this@AddStoryActivity)
+            val myFile = uriToFile(selectedImg, this@AddImageActivity)
             getFile = myFile
             binding.imageStoryUpload.setImageURI(selectedImg)
-            binding.tvDes.requestFocus()
         }
     }
 
@@ -209,20 +182,6 @@ class AddStoryActivity : AppCompatActivity() {
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
-    }
-
-    private fun showToast(msg: String) {
-        Toast.makeText(
-            this@AddStoryActivity,
-            StringBuilder(getString(R.string.message)).append(msg),
-            Toast.LENGTH_SHORT
-        ).show()
-
-        if (msg == "Story created successfully") {
-            val intent = Intent(this@AddStoryActivity, HomePageActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
