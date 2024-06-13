@@ -77,6 +77,13 @@ class AddImageActivity : AppCompatActivity() {
                 getFile?.let { file ->
                     fileFinal = compressImageFile(file)
 
+                    val analyzedResult = "Hasil analisis Anda"
+                    val imageUri = "content://path/to/your/image" // Ganti dengan URI sesuai dengan gambar yang dianalisis
+
+                    val intent = Intent(this@AddImageActivity, AnalyzeResultActivity::class.java)
+                    intent.putExtra("analyzedResult", analyzedResult)
+                    intent.putExtra("imageUri", imageUri)
+                    startActivity(intent)
                     val requestImageFile = fileFinal.asRequestBody("image/jpeg".toMediaTypeOrNull())
                     val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                         "photo",

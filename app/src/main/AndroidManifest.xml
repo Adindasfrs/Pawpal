@@ -32,6 +32,9 @@
         android:theme="@style/Theme.Pawpal"
         tools:targetApi="31">
         <activity
+            android:name=".userinterface.AnalyzeResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".userinterface.ResultActivity"
             android:exported="false" />
         <activity
@@ -57,12 +60,6 @@
 
         <activity
             android:name=".userinterface.AddImageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".userinterface.DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".userinterface.HomePageActivity"
             android:exported="false" />
         <activity
             android:name=".userinterface.SplashScreenActivity"
