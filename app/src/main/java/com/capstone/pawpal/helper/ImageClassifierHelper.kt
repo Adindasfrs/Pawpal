@@ -9,6 +9,14 @@ import android.provider.MediaStore
 import android.renderscript.Element
 import android.util.Log
 import com.capstone.pawpal.R
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.common.ops.CastOp
+import org.tensorflow.lite.support.image.ImageProcessor
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.image.ops.ResizeOp
+import org.tensorflow.lite.task.core.BaseOptions
+import org.tensorflow.lite.task.vision.classifier.Classifications
+import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
 
 @Suppress("DEPRECATION")
@@ -54,7 +62,7 @@ class ImageClassifierHelper(
 
         val imageProcessor = ImageProcessor.Builder()
             .add(ResizeOp(224, 224, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
-            .add(CastOp(Element.DataType.FLOAT32))
+            .add(CastOp(DataType.FLOAT32))
             .build()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
