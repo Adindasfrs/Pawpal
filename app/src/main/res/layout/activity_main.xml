@@ -12,7 +12,7 @@
         android:layout_height="109dp"
         android:layout_marginTop="90dp"
         android:contentDescription="@string/iconLogin"
-        android:src="@drawable/baseline_account_circle_24"
+        android:src="@drawable/pawpal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -76,7 +76,7 @@
         android:layout_marginTop="8dp"
         android:alpha="0"
         tools:alpha="1"
-        android:backgroundTint="#9C27B0"
+        android:backgroundTint="@color/grey"
         android:text="@string/login_button"
         app:layout_constraintEnd_toEndOf="@+id/PasswordLogin"
         app:layout_constraintStart_toStartOf="@+id/PasswordLogin"

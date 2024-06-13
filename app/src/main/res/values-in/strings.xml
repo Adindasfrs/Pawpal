@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Story App</string>
-    <string name="login_description">Halo, selamat datang di Story App</string>
+    <string name="app_name">PawPal</string>
+    <string name="login_description">Halo, selamat datang di PawPal App</string>
     <string name="iconLogin">Hanya icon hiasan untuk login</string>
     <string name="iconRegister">Hanya icon hiasan untuk register</string>
     <string name="registerDescription">Silahkan masukkan data akun kamu</string>
