@@ -75,5 +75,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="empty_image_warning">Silahkan masukkan berkas gambar terlebih dahulu</string>
 
 </resources>
