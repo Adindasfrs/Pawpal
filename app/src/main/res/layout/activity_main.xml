@@ -6,16 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".userinterface.MainActivity">
 
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:alpha="0"
+        tools:alpha="1"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/tvLogin"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/iconLogin"
         android:layout_width="114dp"
         android:layout_height="109dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/iconLogin"
         android:src="@drawable/pawpal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
     <TextView
         android:id="@+id/tvLoginDescription"
@@ -31,55 +46,61 @@
         app:layout_constraintStart_toStartOf="@+id/iconLogin"
         app:layout_constraintTop_toBottomOf="@+id/iconLogin" />
 
-    <TextView
-        android:id="@+id/tvLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:alpha="0"
-        tools:alpha="1"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="@string/tvLogin"
-        android:textColor="@color/black"
-        android:textSize="23sp"
-        app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoginDescription" />
-
     <com.capstone.pawpal.customview.CVEmail
         android:id="@+id/CVEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:alpha="0"
         tools:alpha="1"
         android:hint="@string/email"
-        app:layout_constraintEnd_toEndOf="@+id/tvLoginDescription"
-        app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+        android:background="@drawable/rounded_corners"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginDescription" />
 
     <com.capstone.pawpal.customview.CVPassword
         android:id="@+id/PasswordLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:alpha="0"
         tools:alpha="1"
         android:hint="@string/password"
-        app:layout_constraintEnd_toEndOf="@+id/tvLoginDescription"
-        app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
+        android:background="@drawable/rounded_corners"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CVEmail" />
+
+    <CheckBox
+        android:id="@+id/seePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        tools:alpha="1"
+        android:text="@string/passwordVisible"
+        app:layout_constraintStart_toStartOf="@+id/PasswordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordLogin" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="8dp"
         android:alpha="0"
         tools:alpha="1"
         android:backgroundTint="@color/grey"
         android:text="@string/login_button"
-        app:layout_constraintEnd_toEndOf="@+id/PasswordLogin"
-        app:layout_constraintStart_toStartOf="@+id/PasswordLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seePassword" />
 
     <TextView
@@ -92,19 +113,9 @@
         tools:alpha="1"
         android:text="@string/register"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
-        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-    <CheckBox
-        android:id="@+id/seePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:alpha="0"
-        tools:alpha="1"
-        android:text="@string/passwordVisible"
-        app:layout_constraintStart_toStartOf="@+id/PasswordLogin"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordLogin" />
 
     <TextView
         android:id="@+id/btnRegister"

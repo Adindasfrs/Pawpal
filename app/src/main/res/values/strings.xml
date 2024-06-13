@@ -46,7 +46,7 @@
     <string name="tvLogin">Login</string>
     <string name="login_button">Login</string>
     <string name="invalidLogin">Enter your account data correctly!</string>
-    <string name="registerHeader">Register Account</string>
+    <string name="registerHeader">Register</string>
     <string name="register">Don\'t have an account yet?</string>
     <string name="register_button">Register</string>
     <string name="registerCreate">Create Account</string>
