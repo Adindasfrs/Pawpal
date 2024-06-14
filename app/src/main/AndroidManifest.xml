@@ -30,6 +30,9 @@
         android:theme="@style/Theme.Pawpal"
         tools:targetApi="31">
         <activity
+            android:name=".userinterface.CatDiseaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".userinterface.LibraryActivity"
             android:exported="false" />
         <activity

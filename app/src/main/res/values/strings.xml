@@ -26,8 +26,6 @@
     <string name="choose_camera">Choose Camera</string>
     <string name="result">Breads Of Cat: </string>
 
-    <string name="name">Name</string>
-    <string name="description">Description</string>
     <string name="timeCreatedContent">April 13, 2023, 12:18:54</string>
     <string name="content">This image is part of the story</string>
     <string name="imageDataNone">Displayed when there is no data</string>
