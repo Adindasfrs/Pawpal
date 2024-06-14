@@ -30,47 +30,22 @@ import com.capstone.pawpal.helper.ImageClassifierHelper
 import com.capstone.pawpal.viewmodel.MainViewModel
 import com.capstone.pawpal.viewmodel.UserLoginViewModel
 import com.capstone.pawpal.viewmodel.ViewModelFactory
+import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.text.NumberFormat
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var imageClassifierHelper: ImageClassifierHelper
 
     private val mainViewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    private var displayResult: String? = null
-    private var currentImageUri: Uri? = null
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
-
         ifClicked()
         playAnimation()
 
@@ -97,88 +72,56 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoadingLogin.observe(this) {
             showLoading(it)
         }
-
-        binding.galleryButton.setOnClickListener { startGallery() }
-        binding.analyzeButton.setOnClickListener {
-            currentImageUri?.let {
-                analyzeImage()
-            } ?: run {
-                showToast(getString(R.string.empty_image_warning))
-            }
-        }
     }
 
-    private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
-    private val launcherGallery = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            currentImageUri = uri
-            showImage(uri)
+    private fun responseLogin(
+        isError: Boolean,
+        message: String,
+        userLoginViewModel: UserLoginViewModel
+    ) {
+        if (!isError) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            val user = mainViewModel.userLogin.value
+            userLoginViewModel.saveLoginSession(true)
+            userLoginViewModel.saveToken(user?.loginResult!!.token)
+            userLoginViewModel.saveName(user.loginResult.name)
         } else {
-            Log.d("Photo Picker", "No media selected")
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK) {
-            data?.data?.let { uri ->
-                currentImageUri = uri
-                showImage(currentImageUri)
-            }
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.iconLogin, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val tvLoginDesc =
+            ObjectAnimator.ofFloat(binding.tvLoginDescription, View.ALPHA, 1f).setDuration(300)
+        val evEmail = ObjectAnimator.ofFloat(binding.CVEmail, View.ALPHA, 1f).setDuration(300)
+        val evPassword =
+            ObjectAnimator.ofFloat(binding.PasswordLogin, View.ALPHA, 1f).setDuration(300)
+        val seePassword =
+            ObjectAnimator.ofFloat(binding.seePassword, View.ALPHA, 1f).setDuration(300)
+        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(300)
+        val btnRegister =
+            ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
+        val tvRegistDesc =
+            ObjectAnimator.ofFloat(binding.tvRegistDescription, View.ALPHA, 1f).setDuration(300)
+
+        AnimatorSet().apply {
+            playSequentially(
+                tvLoginDesc,
+                evEmail,
+                evPassword,
+                seePassword,
+                btnLogin,
+                btnRegister,
+                tvRegistDesc
+            )
+            start()
         }
-    }
-
-    private fun showImage(uri: Uri?) {
-        uri?.let {
-            binding.imageStoryUpload.setImageURI(it)
-        }
-    }
-
-    private fun analyzeImage() {
-        imageClassifierHelper = ImageClassifierHelper(
-            context = this,
-            classifierListener = object : ImageClassifierHelper.ClassifierListener {
-                override fun onError(error: String) {
-                    runOnUiThread {
-                        showToast(error)
-                    }
-                }
-
-                override fun onResults(results: List<Classifications>?) {
-                    runOnUiThread {
-                        results?.let { it ->
-                            if (it.isNotEmpty() && it[0].categories.isNotEmpty()) {
-                                println(it)
-                                val sortedCategories =
-                                    it[0].categories.sortedByDescending { it?.score }
-                                displayResult =
-                                    sortedCategories.joinToString("\n") {
-                                        "${it.label} " + NumberFormat.getPercentInstance()
-                                            .format(it.score).trim()
-                                    }
-                                resultAnalyze()
-                            } else {
-                                displayResult = ""
-                            }
-                        }
-                    }
-                }
-            }
-        )
-        imageClassifierHelper.classifyStaticImage(currentImageUri!!)
-    }
-
-    private fun resultAnalyze(){
-        val intent = Intent(this@MainActivity, ResultActivity::class.java)
-        intent.putExtra(ResultActivity.EXTRA_IMAGE_URI, currentImageUri.toString())
-        intent.putExtra(ResultActivity.EXTRA_RESULT, displayResult.toString())
-        startActivity(intent)
     }
 
     private fun ifClicked() {
@@ -213,59 +156,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 PasswordTransformationMethod.getInstance()
             }
+            // Set selection to end of text
             binding.PasswordLogin.text?.let { binding.PasswordLogin.setSelection(it.length) }
-        }
-    }
-
-    private fun responseLogin(
-        isError: Boolean,
-        message: String,
-        userLoginViewModel: UserLoginViewModel
-    ) {
-        if (!isError) {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            val user = mainViewModel.userLogin.value
-            userLoginViewModel.saveLoginSession(true)
-            userLoginViewModel.saveToken(user?.loginResult!!.token)
-            userLoginViewModel.saveName(user.loginResult.name)
-        } else {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.iconLogin, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
-
-        val tvLoginDesc =
-            ObjectAnimator.ofFloat(binding.tvLoginDescription, View.ALPHA, 1f).setDuration(300)
-        val tvLogin = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(300)
-        val evEmail = ObjectAnimator.ofFloat(binding.CVEmail, View.ALPHA, 1f).setDuration(300)
-        val evPassword =
-            ObjectAnimator.ofFloat(binding.PasswordLogin, View.ALPHA, 1f).setDuration(300)
-        val seePassword =
-            ObjectAnimator.ofFloat(binding.seePassword, View.ALPHA, 1f).setDuration(300)
-        val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(300)
-        val btnRegister =
-            ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
-        val tvRegistDesc =
-            ObjectAnimator.ofFloat(binding.tvRegistDescription, View.ALPHA, 1f).setDuration(300)
-
-        AnimatorSet().apply {
-            playSequentially(
-                tvLoginDesc,
-                tvLogin,
-                evEmail,
-                evPassword,
-                seePassword,
-                btnLogin,
-                btnRegister,
-                tvRegistDesc
-            )
-            start()
         }
     }
 
@@ -275,14 +167,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this)
-    }
-
-    companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
-        private const val REQUEST_IMAGE_GALLERY = 100
     }
 }

@@ -6,7 +6,6 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.renderscript.Element
 import android.util.Log
 import com.capstone.pawpal.R
 import org.tensorflow.lite.DataType
@@ -17,7 +16,6 @@ import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
-
 
 @Suppress("DEPRECATION")
 class ImageClassifierHelper(
@@ -52,7 +50,7 @@ class ImageClassifierHelper(
             Log.e(TAG, e.message.toString())
         }
     }
-//oyy
+
     fun classifyStaticImage(imageUri: Uri) {
         // TODO: mengklasifikasikan imageUri dari gambar statis.
 
