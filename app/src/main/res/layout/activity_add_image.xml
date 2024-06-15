@@ -1,106 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     tools:context=".userinterface.AddImageActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/ivBackArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/back"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Cat Detection"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <!-- Scrollable Content -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="80dp">
+        android:layout_below="@id/title">
 
-        <!-- Panah Kembali (Back Arrow) -->
-        <ImageView
-            android:id="@+id/ivBackArrow"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            android:contentDescription="@string/back"
-            android:padding="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="visible" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!-- Isi Konten Anda -->
-        <TextView
-            android:id="@+id/tvUsers"
+            <!-- Your Content Views -->
+
+            <!-- Image Upload Section -->
+            <TextView
+                android:id="@+id/tvUsers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/post_as"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+
+            <ImageView
+                android:id="@+id/imageStoryUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_photo_24"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="16dp" />
+
+            <!-- Buttons for Camera and Gallery -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/cameraButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cameraChoose"
+                    android:backgroundTint="@color/grey"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/galleryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/galleryChoose"
+                    android:backgroundTint="@color/grey"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- Analyze Button -->
+            <Button
+                android:id="@+id/analyzeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/analyze"
+                android:backgroundTint="@color/grey"
+                android:layout_marginTop="16dp" />
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBarAddStory"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/ProgressBarStyleWhite"
+                android:visibility="gone"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/addButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="40dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/post_as" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onAddButtonClick">
 
-        <ImageView
-            android:id="@+id/imageStoryUpload"
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_add_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/libraryButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toEndOf="@+id/tvUsers"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tvUsers"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsers"
-            app:srcCompat="@drawable/baseline_photo_24" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onLibraryButtonClick">
 
-        <Button
-            android:id="@+id/cameraButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/grey"
-            android:text="@string/cameraChoose"
-            app:layout_constraintEnd_toStartOf="@+id/galleryButton"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="@+id/imageStoryUpload"
-            app:layout_constraintTop_toBottomOf="@+id/imageStoryUpload" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_library_books_24" />
 
-        <Button
-            android:id="@+id/galleryButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/grey"
-            android:text="@string/galleryChoose"
-            app:layout_constraintEnd_toEndOf="@+id/imageStoryUpload"
-            app:layout_constraintStart_toEndOf="@+id/cameraButton"
-            app:layout_constraintTop_toBottomOf="@+id/imageStoryUpload" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Library"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/analyzeButton"
+        <LinearLayout
+            android:id="@+id/languageButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/grey"
-            android:text="@string/analyze"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/galleryButton" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onLanguageButtonClick">
 
-        <ProgressBar
-            android:id="@+id/progressBarAddStory"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_language_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logoutButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:theme="@style/ProgressBarStyleWhite"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/imageStoryUpload"
-            app:layout_constraintEnd_toEndOf="@+id/imageStoryUpload"
-            app:layout_constraintStart_toStartOf="@+id/imageStoryUpload"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsers" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onLogoutButtonClick">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_logout_24" />
 
-</ScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
