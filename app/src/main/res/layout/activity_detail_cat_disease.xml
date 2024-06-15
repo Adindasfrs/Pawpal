@@ -37,6 +37,9 @@
         android:src="@drawable/ic_image_placeholder"
         android:contentDescription="@string/thumbnail" />
 
+
+
+
     <LinearLayout
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
@@ -72,5 +75,8 @@
             android:text="Flu is blablabla"
             android:textColor="#888888"
             android:textSize="14sp" />
+
+
     </LinearLayout>
+
 </RelativeLayout>
