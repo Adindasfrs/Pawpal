@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.pawpal.R
+import com.capstone.pawpal.dataclass.CatFood
 import kotlinx.android.synthetic.main.item_cat_food.view.*
 
 class CatFoodAdapter(private val catFoodList: List<CatFood>) : RecyclerView.Adapter<CatFoodAdapter.CatFoodViewHolder>() {
@@ -29,4 +30,4 @@ class CatFoodAdapter(private val catFoodList: List<CatFood>) : RecyclerView.Adap
     }
 }
 
-data class CatFood(val name: String, val description: String)
+
