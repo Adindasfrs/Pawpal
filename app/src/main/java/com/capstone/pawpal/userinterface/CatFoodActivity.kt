@@ -3,6 +3,8 @@ package com.capstone.pawpal.userinterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.capstone.pawpal.R
+import com.capstone.pawpal.adapter.CatFood
 import kotlinx.android.synthetic.main.activity_cat_food.*
 
 class CatFoodActivity : AppCompatActivity() {
@@ -19,7 +21,7 @@ class CatFoodActivity : AppCompatActivity() {
         // Set OnClickListener untuk tombol Add
         addButton.setOnClickListener {
             // Implementasikan aksi untuk tombol Add
-            val intent = Intent(this, AddFoodActivity::class.java)
+            val intent = Intent(this, AddImageActivity::class.java)
             startActivity(intent)
         }
 
@@ -40,7 +42,7 @@ class CatFoodActivity : AppCompatActivity() {
         // Set OnClickListener untuk tombol Logout
         logoutButton.setOnClickListener {
             // Implementasikan aksi untuk tombol Logout
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

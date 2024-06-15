@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.pawpal.R
 import com.capstone.pawpal.adapter.CatDiseaseAdapter
 import com.capstone.pawpal.dataclass.CatDisease
 import kotlinx.android.synthetic.main.activity_cat_disease.*

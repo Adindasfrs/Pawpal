@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.capstone.pawpal.R
+import com.capstone.pawpal.dataclass.CatDisease
 
 class CatDiseaseAdapter(private val catDiseaseList: List<CatDisease>,
                         private val listener: OnItemClickListener) :

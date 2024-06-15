@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yourappname.R
+import com.capstone.pawpal.R
 
 class AddImageActivity : AppCompatActivity() {
 
