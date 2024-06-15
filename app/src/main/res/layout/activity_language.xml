@@ -11,7 +11,9 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
-        android:background="@drawable/ic_back" />
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/back_button" />
 
     <TextView
         android:id="@+id/title"
@@ -33,13 +35,18 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Contoh item dalam daftar bahasa -->
         <LinearLayout
+            android:id="@+id/englishItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_rectangle"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onLanguageItemClick">
 
             <ImageView
                 android:layout_width="24dp"
@@ -55,13 +62,17 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <!-- Contoh item dalam daftar bahasa -->
         <LinearLayout
-            android:id="@+id/catDiseaseItem"
+            android:id="@+id/indonesiaItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_rectangle"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="onLanguageItemClick">
 
             <ImageView
                 android:layout_width="24dp"

@@ -1,33 +1,60 @@
 package com.capstone.pawpal.userinterface
 
-import android.R
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.capstone.pawpal.adapter.CatFoodAdapter
-
+import kotlinx.android.synthetic.main.activity_cat_food.*
 
 class CatFoodActivity : AppCompatActivity() {
-    private var recyclerView: RecyclerView? = null
-    private var adapter: CatFoodAdapter? = null
-    private var catFoods: MutableList<String>? = null // Example data
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cat_food)
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
 
-        // Initialize data
-        catFoods = ArrayList()
-        catFoods.add("Cat Food 1")
-        catFoods.add("Cat Food 2")
-        catFoods.add("Cat Food 3")
-        // Add more items as needed
+        // Set OnClickListener untuk tombol kembali (backButton)
+        backButton.setOnClickListener {
+            onBackPressed() // Kembali ke activity sebelumnya
+        }
 
-        // Initialize adapter
-        adapter = CatFoodAdapter(catFoods)
-        recyclerView.setAdapter(adapter)
+        // Set OnClickListener untuk tombol Add
+        addButton.setOnClickListener {
+            // Implementasikan aksi untuk tombol Add
+            val intent = Intent(this, AddFoodActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Set OnClickListener untuk tombol Library
+        libraryButton.setOnClickListener {
+            // Implementasikan aksi untuk tombol Library
+            val intent = Intent(this, LibraryActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Set OnClickListener untuk tombol Language
+        languageButton.setOnClickListener {
+            // Implementasikan aksi untuk tombol Language
+            val intent = Intent(this, LanguageActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Set OnClickListener untuk tombol Logout
+        logoutButton.setOnClickListener {
+            // Implementasikan aksi untuk tombol Logout
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Inisialisasi RecyclerView dengan adapter
+        // recyclerView.adapter = CatFoodAdapter(getCatFoodList()) // Pastikan Anda sudah memiliki adapter dan data list
+
+        // Contoh data yang bisa Anda gunakan
+        val catFoodList = listOf(
+            CatFood("Brand A", "Description A"),
+            CatFood("Brand B", "Description B")
+        )
+
+        // Inisialisasi adapter dengan data
+        val adapter = CatFoodAdapter(catFoodList)
+        recyclerView.adapter = adapter
     }
 }
-

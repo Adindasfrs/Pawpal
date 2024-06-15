@@ -13,7 +13,9 @@
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackground"
         android:src="@drawable/ic_back"
-        android:contentDescription="@string/back_button" />
+        android:contentDescription="@string/back_button"
+        android:clickable="true"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/title"
@@ -96,7 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -117,7 +121,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -138,7 +144,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -159,7 +167,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"

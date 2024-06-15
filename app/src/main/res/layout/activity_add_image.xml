@@ -129,8 +129,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onAddButtonClick">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -153,8 +152,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLibraryButtonClick">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -177,8 +175,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLanguageButtonClick">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -201,8 +198,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLogoutButtonClick">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"

@@ -34,12 +34,15 @@
         android:padding="16dp">
 
         <LinearLayout
+            android:id="@+id/catDiseaseItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_rectangle"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToCatDiseaseActivity">
 
             <ImageView
                 android:layout_width="24dp"
@@ -56,12 +59,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/catDiseaseItem"
+            android:id="@+id/catFoodItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_rectangle"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToCatFoodActivity">
 
             <ImageView
                 android:layout_width="24dp"
@@ -94,7 +100,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToAddActivity">
 
             <ImageView
                 android:layout_width="24dp"
@@ -115,7 +124,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToLibraryActivity">
 
             <ImageView
                 android:layout_width="24dp"
@@ -136,7 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToLanguageActivity">
 
             <ImageView
                 android:layout_width="24dp"
@@ -157,7 +172,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToLogout">
 
             <ImageView
                 android:layout_width="24dp"
