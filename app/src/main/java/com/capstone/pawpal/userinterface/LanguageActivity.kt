@@ -72,6 +72,12 @@ class LanguageActivity : AppCompatActivity() {
         // Memperbarui context aplikasi dengan konfigurasi baru
         val context = createConfigurationContext(config)
         resources.updateConfiguration(config, context.resources.displayMetrics)
+
+        // Menyimpan bahasa ke SharedPreferences
+        val sharedPrefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val editor = sharedPrefs.edit()
+        editor.putString("My_Lang", languageCode)
+        editor.apply()
     }
 
     override fun attachBaseContext(newBase: Context) {
