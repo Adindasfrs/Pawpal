@@ -20,7 +20,7 @@
 
     <!-- Title -->
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/catdetection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title">
+        android:layout_below="@id/catdetection">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:layout_marginTop="16dp" />
 
             <ImageView
-                android:id="@+id/imageStoryUpload"
+                android:id="@+id/imageDetectionUpload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_photo_24"
