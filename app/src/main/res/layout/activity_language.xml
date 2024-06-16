@@ -12,7 +12,9 @@
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackground"
         android:src="@drawable/ic_back"
-        android:contentDescription="@string/back_button" />
+        android:contentDescription="@string/back_button"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/language"

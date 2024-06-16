@@ -2,8 +2,10 @@ package com.capstone.pawpal.userinterface
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.pawpal.R
 import com.capstone.pawpal.adapter.CatDiseaseAdapter
 import com.capstone.pawpal.dataclass.CatDisease
 import com.capstone.pawpal.databinding.ActivityCatDiseaseBinding
@@ -17,6 +19,12 @@ class CatDiseaseActivity : AppCompatActivity(), CatDiseaseAdapter.OnItemClickLis
         super.onCreate(savedInstanceState)
         binding = ActivityCatDiseaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Set OnClickListener untuk tombol kembali (ivBackArrow)
+        val backArrow: ImageView = findViewById(R.id.ivBackArrow)
+        backArrow.setOnClickListener {
+            onBackPressed() // Kembali ke activity sebelumnya
+        }
 
         // Inisialisasi RecyclerView
         binding.recyclerView.layoutManager = LinearLayoutManager(this)

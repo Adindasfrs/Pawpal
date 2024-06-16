@@ -16,7 +16,9 @@
         android:padding="12dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless" />
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/title"

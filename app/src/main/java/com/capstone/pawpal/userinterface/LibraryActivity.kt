@@ -3,6 +3,7 @@ package com.capstone.pawpal.userinterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.pawpal.R
 
@@ -11,7 +12,15 @@ class LibraryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
+
+        // Set OnClickListener untuk tombol kembali (ivBackArrow)
+        val backArrow: ImageView = findViewById(R.id.ivBackArrow)
+        backArrow.setOnClickListener {
+            onBackPressed() // Kembali ke activity sebelumnya
+        }
     }
+
+
 
     // Method untuk navigasi ke CatDiseaseActivity
     fun navigateToCatDiseaseActivity(view: View) {

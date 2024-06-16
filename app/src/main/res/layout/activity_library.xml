@@ -7,16 +7,19 @@
     tools:context=".userinterface.LibraryActivity">
 
     <!-- Back Button -->
+
     <ImageView
         android:id="@+id/ivBackArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_back"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/back"
         android:padding="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless" />
+        android:src="@drawable/ic_back"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/title"
