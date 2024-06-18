@@ -13,21 +13,17 @@ interface APIService {
     @POST("login")
     fun loginUser(@Body requestLogin: LoginDataAccount): Call<ResponseLogin>
 
-    @GET("stories")
-    suspend fun getStoriesWithLocation(
-        @Query("location") location : Int = 1,
-    ): Call<ResponseStory>
-
-    @GET("stories")
-    fun getStory(
-        @Header("Authorization") token: String,
+    @GET("detection")
+    fun getDetection(
+        @Header("Authorization") token: String
     ): Call<ResponseStory>
 
     @Multipart
-    @POST("stories")
+    @POST("detection")
     fun uploadPicture(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
         @Header("Authorization") token: String
     ): Call<ResponseDetail>
 }
+

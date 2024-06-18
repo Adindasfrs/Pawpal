@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#D6DAC8"
     tools:context=".userinterface.AddImageActivity">
 
     <!-- Back Button -->
@@ -75,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/cameraChoose"
                     android:backgroundTint="@color/grey"
+                    android:textColor="@color/white"
                     android:layout_marginEnd="8dp" />
 
                 <Button
@@ -83,6 +84,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/galleryChoose"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/grey"
                     android:layout_marginStart="8dp" />
             </LinearLayout>
@@ -93,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/analyze"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/grey"
                 android:layout_marginTop="16dp" />
 
@@ -162,29 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Library"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/languageButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/baseline_language_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Language"
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </LinearLayout>

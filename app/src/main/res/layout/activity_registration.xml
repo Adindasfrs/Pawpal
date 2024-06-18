@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D6DAC8"
     tools:context=".userinterface.RegistrationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,8 +28,8 @@
 
         <ImageView
             android:id="@+id/iconRegist"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/iconRegister"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,6 +126,7 @@
             android:padding="16dp"
             android:backgroundTint="@color/grey"
             android:text="@string/registerCreate"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seeRegistPassword" />

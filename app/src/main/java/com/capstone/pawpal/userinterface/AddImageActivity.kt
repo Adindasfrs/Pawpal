@@ -8,7 +8,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -16,7 +15,12 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.capstone.pawpal.R
+import com.capstone.pawpal.UserPreferences
+import com.capstone.pawpal.dataStore
+import com.capstone.pawpal.viewmodel.UserLoginViewModel
+import com.capstone.pawpal.viewmodel.ViewModelFactory
 
 class AddImageActivity : AppCompatActivity() {
 
@@ -26,15 +30,13 @@ class AddImageActivity : AppCompatActivity() {
     private lateinit var galleryButton: Button
     private lateinit var analyzeButton: Button
     private lateinit var progressBar: ProgressBar
+    private lateinit var addButton: LinearLayout
+    private lateinit var libraryButton: LinearLayout
+    private lateinit var logoutButton: LinearLayout
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_IMAGE_PICK = 2
     private val REQUEST_CAMERA_PERMISSION = 100
-
-    private lateinit var addButton: LinearLayout
-    private lateinit var libraryButton: LinearLayout
-    private lateinit var languageButton: LinearLayout
-    private lateinit var logoutButton: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +48,8 @@ class AddImageActivity : AppCompatActivity() {
         galleryButton = findViewById(R.id.galleryButton)
         analyzeButton = findViewById(R.id.analyzeButton)
         progressBar = findViewById(R.id.progressBarAddStory)
-
         addButton = findViewById(R.id.addButton)
         libraryButton = findViewById(R.id.libraryButton)
-        languageButton = findViewById(R.id.languageButton)
         logoutButton = findViewById(R.id.logoutButton)
 
         ivBackArrow.setOnClickListener { finish() }
@@ -60,10 +60,8 @@ class AddImageActivity : AppCompatActivity() {
         // Set onClickListeners for navigation bar buttons
         addButton.setOnClickListener { navigateToAdd() }
         libraryButton.setOnClickListener { navigateToLibrary() }
-        languageButton.setOnClickListener { navigateToLanguage() }
-        logoutButton.setOnClickListener { navigateToLogout() }
+        logoutButton.setOnClickListener { logout() }
     }
-
 
     private fun openCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -84,33 +82,44 @@ class AddImageActivity : AppCompatActivity() {
     }
 
     private fun analyzeImage() {
+        // Implement your analyze image logic here
         progressBar.visibility = ProgressBar.VISIBLE
-        // Simulate image analysis with a delay
+        // Example: Simulate analysis process
         imageDetectionUpload.postDelayed({
+            val analyzedResult = "Example analysis result" // Replace with actual analysis result
             progressBar.visibility = ProgressBar.GONE
-            // After analysis, start ResultActivity
             val intent = Intent(this, ResultActivity::class.java)
-            // Pass data to ResultActivity if needed
-            intent.putExtra("RESULT_DATA", "Breeds of Cat: Example Data")
+            intent.putExtra("ANALYSIS_RESULT", analyzedResult)
             startActivity(intent)
-        }, 2000) // Simulate a delay for analysis
+        }, 2000) // Simulate 2 seconds delay
     }
 
     private fun navigateToAdd() {
-        val intent = Intent(this, AddImageActivity::class.java)
-        startActivity(intent)
+        // Already on AddImageActivity, do nothing or update logic as needed
     }
 
     private fun navigateToLibrary() {
-        // Example: Navigate to library activity
+        // Implement navigation logic to Library screen
+        val intent = Intent(this, LibraryActivity::class.java)
+        startActivity(intent)
     }
 
-    private fun navigateToLanguage() {
-        // Example: Navigate to language settings activity
-    }
+    private fun logout() {
+        // Implement logout logic
+        // For example, clear user session and navigate to login screen
+        val pref = UserPreferences.getInstance(dataStore)
+        val userLoginViewModel = ViewModelProvider(this, ViewModelFactory(pref))[UserLoginViewModel::class.java]
 
-    private fun navigateToLogout() {
-        // Example: Handle logout
+        // Clear user session
+        userLoginViewModel.saveLoginSession(false)
+        userLoginViewModel.saveToken("")
+        userLoginViewModel.saveName("")
+
+        // Navigate to login screen (MainActivity in this example)
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish() // Optional: Finish current activity to prevent user from returning using Back button
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

@@ -11,60 +11,46 @@ import com.capstone.pawpal.R
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var ivBackArrow: ImageView
-    private lateinit var resultImage: ImageView
     private lateinit var resultText: TextView
 
     private lateinit var addButton: LinearLayout
     private lateinit var libraryButton: LinearLayout
-    private lateinit var languageButton: LinearLayout
     private lateinit var logoutButton: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-
-
         ivBackArrow = findViewById(R.id.ivBackArrow)
-        resultImage = findViewById(R.id.result_image)
         resultText = findViewById(R.id.result_text)
 
         addButton = findViewById(R.id.addButton)
         libraryButton = findViewById(R.id.libraryButton)
-        languageButton = findViewById(R.id.languageButton)
         logoutButton = findViewById(R.id.logoutButton)
 
         ivBackArrow.setOnClickListener { finish() }
         addButton.setOnClickListener { navigateToAdd() }
         libraryButton.setOnClickListener { navigateToLibrary() }
-        languageButton.setOnClickListener { navigateToLanguage() }
         logoutButton.setOnClickListener { navigateToLogout() }
 
-        // Retrieve and display the result data
-        val resultData = intent.getStringExtra("RESULT_DATA")
-        resultText.text = resultData
-
-        // Example: Load result data
-        // resultImage.setImageBitmap(...)
-
+        // Retrieve and display the analysis result
+        val analyzedResult = intent.getStringExtra("ANALYSIS_RESULT")
+        resultText.text = analyzedResult
     }
 
-
-
     private fun navigateToAdd() {
+        // Navigate back to AddImageActivity
         val intent = Intent(this, AddImageActivity::class.java)
         startActivity(intent)
     }
 
     private fun navigateToLibrary() {
-        // Example: Navigate to library activity
-    }
-
-    private fun navigateToLanguage() {
-        // Example: Navigate to language settings activity
+        // Implement navigation logic to Library screen
+        val intent = Intent(this, LibraryActivity::class.java)
+        startActivity(intent)
     }
 
     private fun navigateToLogout() {
-        // Example: Handle logout
+        // Implement logout logic if needed
     }
 }

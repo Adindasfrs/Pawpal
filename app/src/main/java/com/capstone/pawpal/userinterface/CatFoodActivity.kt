@@ -11,6 +11,7 @@ import com.capstone.pawpal.databinding.ActivityCatFoodBinding
 class CatFoodActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCatFoodBinding
+    private lateinit var catFoodAdapter: CatFoodAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +37,6 @@ class CatFoodActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set OnClickListener untuk tombol Language
-        binding.languageButton.setOnClickListener {
-            // Implementasikan aksi untuk tombol Language
-            val intent = Intent(this, LanguageActivity::class.java)
-            startActivity(intent)
-        }
-
         // Set OnClickListener untuk tombol Logout
         binding.logoutButton.setOnClickListener {
             // Implementasikan aksi untuk tombol Logout
@@ -52,13 +46,15 @@ class CatFoodActivity : AppCompatActivity() {
 
         // Inisialisasi RecyclerView dengan adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Inisialisasi data cat food
         val catFoodList = listOf(
             CatFood("Brand A", "Description A"),
             CatFood("Brand B", "Description B")
         )
 
         // Inisialisasi adapter dengan data
-        val adapter = CatFoodAdapter(catFoodList)
-        binding.recyclerView.adapter = adapter
+        catFoodAdapter = CatFoodAdapter(this, catFoodList) // Pastikan Anda memberikan Context yang benar
+        binding.recyclerView.adapter = catFoodAdapter
     }
 }

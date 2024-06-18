@@ -35,14 +35,6 @@ class DetailCatDiseaseActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set OnClickListener untuk tombol Language
-        val languageButton: LinearLayout = findViewById(R.id.languageButton)
-        languageButton.setOnClickListener {
-            // Implementasikan aksi untuk tombol Language
-            val intent = Intent(this, LanguageActivity::class.java)
-            startActivity(intent)
-        }
-
         // Set OnClickListener untuk tombol Logout
         val logoutButton: LinearLayout = findViewById(R.id.logoutButton)
         logoutButton.setOnClickListener {

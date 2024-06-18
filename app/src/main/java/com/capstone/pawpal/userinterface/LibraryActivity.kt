@@ -20,8 +20,6 @@ class LibraryActivity : AppCompatActivity() {
         }
     }
 
-
-
     // Method untuk navigasi ke CatDiseaseActivity
     fun navigateToCatDiseaseActivity(view: View) {
         val intent = Intent(this, CatDiseaseActivity::class.java)
@@ -43,12 +41,6 @@ class LibraryActivity : AppCompatActivity() {
     // Method untuk navigasi ke LibraryActivity (tidak melakukan apa-apa karena sudah berada di LibraryActivity)
     fun navigateToLibraryActivity(view: View) {
         // Tidak perlu ada tindakan, karena sudah berada di LibraryActivity
-    }
-
-    // Method untuk navigasi ke LanguageActivity
-    fun navigateToLanguageActivity(view: View) {
-        val intent = Intent(this, LanguageActivity::class.java)
-        startActivity(intent)
     }
 
     // Method untuk navigasi ke LoginActivity (contoh, dapat disesuaikan dengan activity logout yang sebenarnya)

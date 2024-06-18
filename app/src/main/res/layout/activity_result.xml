@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="#D6DAC8"
     tools:context=".userinterface.ResultActivity">
 
     <!-- Back Button -->
@@ -67,11 +67,10 @@
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
-        android:padding="8dp"
-        android:weightSum="4">
+        android:padding="8dp">
 
         <LinearLayout
             android:id="@+id/addButton"
@@ -81,8 +80,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onAddClicked">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -105,8 +103,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLibraryClicked">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
@@ -122,30 +119,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/languageButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLanguageClicked">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/baseline_language_24" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Language"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/logoutButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -153,8 +126,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="onLogoutClicked">
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="24dp"
