@@ -8,11 +8,11 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -31,6 +31,11 @@ class AddImageActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_PICK = 2
     private val REQUEST_CAMERA_PERMISSION = 100
 
+    private lateinit var addButton: LinearLayout
+    private lateinit var libraryButton: LinearLayout
+    private lateinit var languageButton: LinearLayout
+    private lateinit var logoutButton: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_image)
@@ -42,11 +47,23 @@ class AddImageActivity : AppCompatActivity() {
         analyzeButton = findViewById(R.id.analyzeButton)
         progressBar = findViewById(R.id.progressBarAddStory)
 
+        addButton = findViewById(R.id.addButton)
+        libraryButton = findViewById(R.id.libraryButton)
+        languageButton = findViewById(R.id.languageButton)
+        logoutButton = findViewById(R.id.logoutButton)
+
         ivBackArrow.setOnClickListener { finish() }
         cameraButton.setOnClickListener { openCamera() }
         galleryButton.setOnClickListener { openGallery() }
         analyzeButton.setOnClickListener { analyzeImage() }
+
+        // Set onClickListeners for navigation bar buttons
+        addButton.setOnClickListener { navigateToAdd() }
+        libraryButton.setOnClickListener { navigateToLibrary() }
+        languageButton.setOnClickListener { navigateToLanguage() }
+        logoutButton.setOnClickListener { navigateToLogout() }
     }
+
 
     private fun openCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -67,10 +84,33 @@ class AddImageActivity : AppCompatActivity() {
     }
 
     private fun analyzeImage() {
-        // Implement your analyze image logic here
         progressBar.visibility = ProgressBar.VISIBLE
-        // Example: Run analysis and then hide the progress bar
-        // progressBar.visibility = ProgressBar.GONE
+        // Simulate image analysis with a delay
+        imageDetectionUpload.postDelayed({
+            progressBar.visibility = ProgressBar.GONE
+            // After analysis, start ResultActivity
+            val intent = Intent(this, ResultActivity::class.java)
+            // Pass data to ResultActivity if needed
+            intent.putExtra("RESULT_DATA", "Breeds of Cat: Example Data")
+            startActivity(intent)
+        }, 2000) // Simulate a delay for analysis
+    }
+
+    private fun navigateToAdd() {
+        val intent = Intent(this, AddImageActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToLibrary() {
+        // Example: Navigate to library activity
+    }
+
+    private fun navigateToLanguage() {
+        // Example: Navigate to language settings activity
+    }
+
+    private fun navigateToLogout() {
+        // Example: Handle logout
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

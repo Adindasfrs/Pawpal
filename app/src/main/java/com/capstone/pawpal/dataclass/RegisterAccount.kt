@@ -1,49 +1,52 @@
 package com.capstone.pawpal.dataclass
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
+// Register data class
 data class RegisterDataAccount(
-    var name: String,
-    var email: String,
-    var password: String
+    val email: String,
+    val password: String,
+    val returnSecureToken: Boolean = true
 )
 
+// Login data class
 data class LoginDataAccount(
-    var email: String,
-    var password: String
+    val email: String,
+    val password: String,
+    val returnSecureToken: Boolean = true
 )
 
+// Response detail
 data class ResponseDetail(
-    var error: Boolean,
-    var message: String
+    val success: Boolean,
+    val message: String
 )
 
+// Response login
 data class ResponseLogin(
-    var error: Boolean,
-    var message: String,
-    var loginResult: LoginResult
+    val idToken: String,
+    val email: String,
+    val refreshToken: String,
+    val expiresIn: String,
+    val localId: String,
+    val registered: Boolean
 )
 
-data class LoginResult(
-    var userId: String,
-    var name: String,
-    var token: String
+// Cat breed data class
+data class CatBreed(
+    val id: Int,
+    val name: String,
+    val description: String
 )
 
-data class ResponseStory(
-    var error: String,
-    var message: String,
-    var listStory: List<StoryDetail>
+// Symptom data class
+data class Symptom(
+    val id: Int,
+    val name: String,
+    val description: String
 )
 
-@Parcelize
-data class StoryDetail(
-    var id: String,
-    var name: String,
-    var description: String,
-    var photoUrl: String,
-    var createdAt: String,
-    var lat: Double,
-    var lon: Double
-) : Parcelable
+// Image upload response
+data class ImageUploadResponse(
+    val success: Boolean,
+    val message: String,
+    val imageUrl: String
+)
