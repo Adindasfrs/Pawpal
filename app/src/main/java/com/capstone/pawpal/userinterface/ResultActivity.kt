@@ -2,18 +2,11 @@ package com.capstone.pawpal.userinterface
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.pawpal.R
-import com.capstone.pawpal.dataclass.CatBreed
-import com.capstone.retrofit.RetrofitClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ResultActivity : AppCompatActivity() {
 
@@ -54,7 +47,6 @@ class ResultActivity : AppCompatActivity() {
         // Example: Load result data
         // resultImage.setImageBitmap(...)
 
-        fetchCatBreeds()
     }
 
 
@@ -74,24 +66,5 @@ class ResultActivity : AppCompatActivity() {
 
     private fun navigateToLogout() {
         // Example: Handle logout
-    }
-
-    private fun fetchCatBreeds() {
-        RetrofitClient.apiService.getCatBreeds().enqueue(object : Callback<List<CatBreed>> {
-            override fun onResponse(call: Call<List<CatBreed>>, response: Response<List<CatBreed>>) {
-                if (response.isSuccessful) {
-                    val catBreeds = response.body()
-                    // Handle the list of cat breeds
-                    Log.d("ResultActivity", "Cat Breeds: $catBreeds")
-                } else {
-                    Log.e("ResultActivity", "Error: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<List<CatBreed>>, t: Throwable) {
-                Log.e("ResultActivity", "Failed to fetch cat breeds", t)
-                Toast.makeText(this@ResultActivity, "Failed to fetch cat breeds", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 }

@@ -7,28 +7,27 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface APIService {
-
     @POST("register")
-    fun registerUser(
-        @Body requestRegister: RegisterDataAccount
-    ): Call<ResponseDetail>
+    fun registUser(@Body requestRegister: RegisterDataAccount): Call<ResponseDetail>
 
-    @POST
-    fun loginUser(
-        @Url url: String = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAPNSSma03HNFSjey_FeSLep7bFeB-ci4g",
-        @Body requestLogin: LoginDataAccount
-    ): Call<ResponseLogin>
+    @POST("login")
+    fun loginUser(@Body requestLogin: LoginDataAccount): Call<ResponseLogin>
 
-    @GET("catbreeds")
-    fun getCatBreeds(): Call<List<CatBreed>>
+    @GET("stories")
+    suspend fun getStoriesWithLocation(
+        @Query("location") location : Int = 1,
+    ): Call<ResponseStory>
 
-    @GET("symptoms")
-    fun getSymptoms(): Call<List<Symptom>>
+    @GET("stories")
+    fun getStory(
+        @Header("Authorization") token: String,
+    ): Call<ResponseStory>
 
     @Multipart
-    @POST("upload-image")
+    @POST("stories")
     fun uploadPicture(
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Header("Authorization") token: String
     ): Call<ResponseDetail>
 }
