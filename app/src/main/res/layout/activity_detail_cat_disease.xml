@@ -21,8 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Cat Disease"
+        android:paddingStart="20dp"
         android:textSize="24sp"
         android:textColor="#000000"
         android:textStyle="bold" />
