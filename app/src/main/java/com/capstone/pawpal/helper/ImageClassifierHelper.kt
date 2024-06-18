@@ -21,7 +21,7 @@ import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 class ImageClassifierHelper(
     private var threshold: Float = 0.1f,
     private var maxResults: Int = 1,
-    private val modelName: String = "cancer_classification.tflite",
+    private val modelName: String = "https://24b6-180-244-138-163.ngrok-free.app/api/upload-image",
     val context: Context,
     val classifierListener: ClassifierListener?
 ) {

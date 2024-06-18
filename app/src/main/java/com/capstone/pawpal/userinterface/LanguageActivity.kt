@@ -1,93 +1,43 @@
 package com.capstone.pawpal.userinterface
 
-import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.pawpal.databinding.ActivityLanguageBinding
+import com.capstone.pawpal.R
 import java.util.Locale
 
 class LanguageActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLanguageBinding
+    private lateinit var englishItem: LinearLayout
+    private lateinit var indonesiaItem: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLanguageBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_language)
 
-        // Set OnClickListener untuk tombol kembali (backButton)
-        binding.backButton.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
+        englishItem = findViewById(R.id.englishItem)
+        indonesiaItem = findViewById(R.id.indonesiaItem)
 
-        // Set OnClickListener untuk item bahasa
-        binding.englishItem.setOnClickListener {
+        englishItem.setOnClickListener {
             setLocale("en")
-            recreate()
         }
-        binding.indonesiaItem.setOnClickListener {
+
+        indonesiaItem.setOnClickListener {
             setLocale("id")
-            recreate()
-        }
-
-        // Set OnClickListener untuk tombol Add
-        binding.addButton.setOnClickListener {
-            val intent = Intent(this, AddImageActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Set OnClickListener untuk tombol Library
-        binding.libraryButton.setOnClickListener {
-            val intent = Intent(this, LibraryActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Set OnClickListener untuk tombol Language
-        binding.languageButton.setOnClickListener {
-            val intent = Intent(this, LanguageActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Set OnClickListener untuk tombol Logout
-        binding.logoutButton.setOnClickListener {
-            // Menghapus preferensi bahasa yang tersimpan
-            val sharedPrefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-            sharedPrefs.edit().remove("My_Lang").apply()
-
-            // Navigasi ke halaman Login
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
         }
     }
 
-    private fun setLocale(languageCode: String) {
-        val locale = Locale(languageCode)
+    private fun setLocale(langCode: String) {
+        val locale = Locale(langCode)
         Locale.setDefault(locale)
         val config = Configuration()
-        config.setLocale(locale)
-        // Memperbarui context aplikasi dengan konfigurasi baru
-        val context = createConfigurationContext(config)
-        resources.updateConfiguration(config, context.resources.displayMetrics)
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
 
-        // Menyimpan bahasa ke SharedPreferences
-        val sharedPrefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val editor = sharedPrefs.edit()
-        editor.putString("My_Lang", languageCode)
-        editor.apply()
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        val sharedPrefs = newBase.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val languageCode = sharedPrefs.getString("My_Lang", "en")
-        val locale = Locale(languageCode!!)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.setLocale(locale)
-        val context = newBase.createConfigurationContext(config)
-        super.attachBaseContext(context)
+        // Restart the activity to apply the new language
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pawpal.R
 import com.capstone.pawpal.UserPreferences
+import com.capstone.pawpal.dataStore
 import com.capstone.pawpal.databinding.ActivityRegistrationBinding
 import com.capstone.pawpal.dataclass.LoginDataAccount
 import com.capstone.pawpal.dataclass.RegisterDataAccount

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".userinterface.MainActivity">
 
+    <!-- Your existing views -->
+
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"

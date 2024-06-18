@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pawpal.UserPreferences
+import com.capstone.pawpal.dataStore
 import com.capstone.pawpal.databinding.ActivitySplashScreenBinding
 import com.capstone.pawpal.viewmodel.UserLoginViewModel
 import com.capstone.pawpal.viewmodel.ViewModelFactory

@@ -1,43 +1,31 @@
 package com.capstone.pawpal.userinterface
 
-import android.Manifest
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pawpal.R
 import com.capstone.pawpal.UserPreferences
+import com.capstone.pawpal.customview.CVEmail
+import com.capstone.pawpal.customview.CVPassword
+import com.capstone.pawpal.dataStore
 import com.capstone.pawpal.databinding.ActivityMainBinding
 import com.capstone.pawpal.dataclass.LoginDataAccount
-import com.capstone.pawpal.helper.ImageClassifierHelper
 import com.capstone.pawpal.viewmodel.MainViewModel
 import com.capstone.pawpal.viewmodel.UserLoginViewModel
 import com.capstone.pawpal.viewmodel.ViewModelFactory
-import org.tensorflow.lite.task.vision.classifier.Classifications
-import java.text.NumberFormat
-
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private val userLoginViewModel: UserLoginViewModel by lazy {
+        ViewModelProvider(this, ViewModelFactory(UserPreferences.getInstance(dataStore)))[UserLoginViewModel::class.java]
+    }
     private val mainViewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
@@ -49,10 +37,6 @@ class MainActivity : AppCompatActivity() {
         ifClicked()
         playAnimation()
 
-        val preferences = UserPreferences.getInstance(dataStore)
-        val userLoginViewModel =
-            ViewModelProvider(this, ViewModelFactory(preferences))[UserLoginViewModel::class.java]
-
         userLoginViewModel.getLoginSession().observe(this) { sessionTrue ->
             if (sessionTrue) {
                 val intent = Intent(this@MainActivity, AddImageActivity::class.java)
@@ -62,11 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.messageLogin.observe(this) { message ->
-            responseLogin(
-                mainViewModel.isErrorLogin,
-                message,
-                userLoginViewModel
-            )
+            responseLogin(mainViewModel.isErrorLogin, message, userLoginViewModel)
         }
 
         mainViewModel.isLoadingLogin.observe(this) {
@@ -74,11 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun responseLogin(
-        isError: Boolean,
-        message: String,
-        userLoginViewModel: UserLoginViewModel
-    ) {
+    private fun responseLogin(isError: Boolean, message: String, userLoginViewModel: UserLoginViewModel) {
         if (!isError) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             val user = mainViewModel.userLogin.value
@@ -97,29 +73,16 @@ class MainActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val tvLoginDesc =
-            ObjectAnimator.ofFloat(binding.tvLoginDescription, View.ALPHA, 1f).setDuration(300)
+        val tvLoginDesc = ObjectAnimator.ofFloat(binding.tvLoginDescription, View.ALPHA, 1f).setDuration(300)
         val evEmail = ObjectAnimator.ofFloat(binding.CVEmail, View.ALPHA, 1f).setDuration(300)
-        val evPassword =
-            ObjectAnimator.ofFloat(binding.PasswordLogin, View.ALPHA, 1f).setDuration(300)
-        val seePassword =
-            ObjectAnimator.ofFloat(binding.seePassword, View.ALPHA, 1f).setDuration(300)
+        val evPassword = ObjectAnimator.ofFloat(binding.PasswordLogin, View.ALPHA, 1f).setDuration(300)
+        val seePassword = ObjectAnimator.ofFloat(binding.seePassword, View.ALPHA, 1f).setDuration(300)
         val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(300)
-        val btnRegister =
-            ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
-        val tvRegistDesc =
-            ObjectAnimator.ofFloat(binding.tvRegistDescription, View.ALPHA, 1f).setDuration(300)
+        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
+        val tvRegistDesc = ObjectAnimator.ofFloat(binding.tvRegistDescription, View.ALPHA, 1f).setDuration(300)
 
         AnimatorSet().apply {
-            playSequentially(
-                tvLoginDesc,
-                evEmail,
-                evPassword,
-                seePassword,
-                btnLogin,
-                btnRegister,
-                tvRegistDesc
-            )
+            playSequentially(tvLoginDesc, evEmail, evPassword, seePassword, btnLogin, btnRegister, tvRegistDesc)
             start()
         }
     }
@@ -136,10 +99,8 @@ class MainActivity : AppCompatActivity() {
                 )
                 mainViewModel.getResponseLogin(requestLogin)
             } else {
-                if (!binding.CVEmail.isEmailValid) binding.CVEmail.error =
-                    getString(R.string.emailNone)
-                if (!binding.PasswordLogin.isPasswordValid) binding.PasswordLogin.error =
-                    getString(R.string.passwordNone)
+                if (!binding.CVEmail.isEmailValid) binding.CVEmail.error = getString(R.string.emailNone)
+                if (!binding.PasswordLogin.isPasswordValid) binding.PasswordLogin.error = getString(R.string.passwordNone)
 
                 Toast.makeText(this, R.string.invalidLogin, Toast.LENGTH_SHORT).show()
             }
@@ -156,7 +117,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 PasswordTransformationMethod.getInstance()
             }
-            // Set selection to end of text
             binding.PasswordLogin.text?.let { binding.PasswordLogin.setSelection(it.length) }
         }
     }

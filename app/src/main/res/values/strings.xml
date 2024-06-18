@@ -18,6 +18,7 @@
     <string name="post_as">share photos of your cat</string>
     <string name="post_users">Create a new detection image</string>
     <string name="message">Message  :</string>
+    <string name="logout_button">Logout</string>
 
     <string name="cameraChoose">Camera</string>
     <string name="galleryChoose">Gallery</string>
