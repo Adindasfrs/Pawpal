@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        mainViewModel.messageLogin.observe(this) { message ->
-            responseLogin(mainViewModel.isErrorLogin, message, userLoginViewModel)
-        }
+//        mainViewModel.messageLogin.observe(this) { message ->
+  //          responseLogin(mainViewModel.isErrorLogin, message, userLoginViewModel)
+    //    }
 
         mainViewModel.isLoadingLogin.observe(this) {
             showLoading(it)
@@ -104,6 +104,11 @@ class MainActivity : AppCompatActivity() {
                     binding.PasswordLogin.text.toString().trim()
                 )
                 mainViewModel.getResponseLogin(requestLogin)
+
+                val intent = Intent(this@MainActivity, AddImageActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+
             } else {
                 if (!binding.CVEmail.isEmailValid) binding.CVEmail.error = getString(R.string.emailNone)
                 if (!binding.PasswordLogin.isPasswordValid) binding.PasswordLogin.error = getString(R.string.passwordNone)

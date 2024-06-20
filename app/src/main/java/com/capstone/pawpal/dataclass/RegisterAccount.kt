@@ -37,11 +37,6 @@ data class ResponseStory(
 
 @Parcelize
 data class StoryDetail(
-    var id: String,
     var name: String,
     var description: String,
-    var photoUrl: String,
-    var createdAt: String,
-    var lat: Double,
-    var lon: Double
 ) : Parcelable

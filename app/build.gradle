@@ -26,12 +26,13 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_URL", "\"https://9a71-180-244-138-231.ngrok-free.app/\"")
+            buildConfigField("String", "API_URL", "\"https://9cb2-180-244-138-231.ngrok-free.app\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_URL", "\"https://9a71-180-244-138-231.ngrok-free.app/\"")
+            buildConfigField("String", "API_URL", "\"https://9cb2-180-244-138-231.ngrok-free.app/\"")
+            buildConfigField ("String", "BASE_URL", "\"https://9cb2-180-244-138-231.ngrok-free.app/\"")
         }
     }
     compileOptions {
@@ -85,6 +86,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+    implementation("androidx.fragment:fragment-ktx:1.5.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // TensorFlow Lite dependencies
     implementation 'org.tensorflow:tensorflow-lite:2.13.0'

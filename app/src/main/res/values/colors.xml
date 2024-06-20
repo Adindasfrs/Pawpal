@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="register_click">#4E31AA</color>
     <color name="header">#00235B</color>
+    <color name="btnBg1">@color/grey</color>
 
     <color name="dark_blue">#E86A33</color>
     <color name="red">#D84C3F</color>
@@ -16,7 +17,7 @@
 
     <color name="grey">#393646</color>
     <color name="navy">#070A52</color>
-    <color name="button">#3C486B</color>
+    <color name="button">@color/grey</color>
 
     <style name="ProgressBarStyle">
         <item name="colorAccent">@color/black</item>
