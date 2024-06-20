@@ -12,7 +12,7 @@
         android:id="@+id/ivBackArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/back"
@@ -28,6 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Library"
+        android:fontFamily="@font/montserrat"
         android:textSize="24sp"
         android:textColor="#000000"
         android:textStyle="bold" />
@@ -63,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Cat Disease"
+                android:fontFamily="@font/poppins"
                 android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -88,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Breeds of Cat"
+                android:fontFamily="@font/poppins"
                 android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -139,7 +142,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_library_books_24" />
+                android:src="@drawable/outline_library_books_24" />
 
             <TextView
                 android:layout_width="wrap_content"

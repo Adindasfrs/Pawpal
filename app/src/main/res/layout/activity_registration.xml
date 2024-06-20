@@ -20,7 +20,7 @@
             android:text="@string/registerHeader"
             android:textColor="@color/black"
             android:textSize="35sp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="@font/montserrat"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/poppins"
             android:text="@string/registerDescription"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/iconRegist"
             app:layout_constraintStart_toStartOf="@+id/iconRegist"
             app:layout_constraintTop_toBottomOf="@+id/iconRegist" />
@@ -53,6 +53,7 @@
         <com.capstone.pawpal.customview.CVName
             android:id="@+id/RegistName"
             android:layout_width="0dp"
+            android:fontFamily="@font/rubik"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginStart="32dp"
@@ -74,6 +75,7 @@
             android:padding="16dp"
             android:background="@drawable/rounded_corners"
             android:hint="@string/email"
+            android:fontFamily="@font/rubik"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RegistName" />
@@ -88,6 +90,7 @@
             android:padding="16dp"
             android:background="@drawable/rounded_corners"
             android:hint="@string/password"
+            android:fontFamily="@font/rubik"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RegistEmail" />
@@ -102,6 +105,7 @@
             android:padding="16dp"
             android:background="@drawable/rounded_corners"
             android:hint="@string/passwordConfirm"
+            android:fontFamily="@font/rubik"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RegistPassword" />
@@ -113,6 +117,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/passwordVisible"
+            android:fontFamily="@font/rubik"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RetypePassword" />
 
@@ -126,7 +131,9 @@
             android:padding="16dp"
             android:backgroundTint="@color/grey"
             android:text="@string/registerCreate"
+            android:fontFamily="@font/rubik"
             android:textColor="@color/white"
+            android:background="@drawable/menu_bg1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seeRegistPassword" />

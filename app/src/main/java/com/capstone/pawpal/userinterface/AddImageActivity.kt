@@ -20,7 +20,6 @@ import com.capstone.pawpal.R
 import com.capstone.pawpal.UserPreferences
 import com.capstone.pawpal.dataStore
 import com.capstone.pawpal.viewmodel.UserLoginViewModel
-import com.capstone.pawpal.viewmodel.ViewModelFactory
 
 class AddImageActivity : AppCompatActivity() {
 
@@ -86,7 +85,7 @@ class AddImageActivity : AppCompatActivity() {
         progressBar.visibility = ProgressBar.VISIBLE
         // Example: Simulate analysis process
         imageDetectionUpload.postDelayed({
-            val analyzedResult = "Example analysis result" // Replace with actual analysis result
+            val analyzedResult = "Breeds Of Cat:" // Replace with actual analysis result
             progressBar.visibility = ProgressBar.GONE
             val intent = Intent(this, ResultActivity::class.java)
             intent.putExtra("ANALYSIS_RESULT", analyzedResult)
@@ -108,7 +107,9 @@ class AddImageActivity : AppCompatActivity() {
         // Implement logout logic
         // For example, clear user session and navigate to login screen
         val pref = UserPreferences.getInstance(dataStore)
-        val userLoginViewModel = ViewModelProvider(this, ViewModelFactory(pref))[UserLoginViewModel::class.java]
+        val userLoginViewModel = ViewModelProvider(this,
+            com.capstone.pawpal.viewmodel.ViewModelFactory(pref)
+        )[UserLoginViewModel::class.java]
 
         // Clear user session
         userLoginViewModel.saveLoginSession(false)

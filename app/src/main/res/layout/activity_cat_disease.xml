@@ -15,7 +15,7 @@
         android:contentDescription="@string/back"
         android:padding="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"/>
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:fontFamily="@font/montserrat"
         android:text="Cat Disease"
         android:textSize="24sp"
         android:textColor="#000000"
@@ -89,7 +90,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_library_books_24" />
+                android:src="@drawable/outline_library_books_24" />
 
             <TextView
                 android:layout_width="wrap_content"

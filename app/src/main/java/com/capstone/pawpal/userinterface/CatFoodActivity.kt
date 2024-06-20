@@ -5,13 +5,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.pawpal.adapter.CatFoodAdapter
-import com.capstone.pawpal.dataclass.CatFood
 import com.capstone.pawpal.databinding.ActivityCatFoodBinding
+import com.capstone.pawpal.dataclass.CatFood
 
 class CatFoodActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCatFoodBinding
     private lateinit var catFoodAdapter: CatFoodAdapter
+
+//    private val viewModel: CatFoodViewModel by viewModels {
+//        ViewModelFactory.useViewModelFactory {
+//            CatFoodViewModel(Injection.provideRepository(this))
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +58,26 @@ class CatFoodActivity : AppCompatActivity() {
             CatFood("Brand A", "Description A"),
             CatFood("Brand B", "Description B")
         )
+
+//        fun catbreeds() {
+//            viewModel.CatBreeds.collect { result ->
+//                when (result) {
+//                    is Result.Loading -> {
+//                        // Show loading indicator
+//                    }
+//                    is Result.Success -> {
+//                        val sortedBreeds = result.data.sortedBy { it.namaRas } // Sort by namaRas
+//                        val adapter = CatBreedsAdapter(sortedBreeds)
+//                        binding.recyclerView.adapter = adapter
+//                    }
+//                    is Result.Error -> {
+//                        // Handle error
+//                    }
+//                }
+//            }
+//        }
+
+
 
         // Inisialisasi adapter dengan data
         catFoodAdapter = CatFoodAdapter(this, catFoodList) // Pastikan Anda memberikan Context yang benar
