@@ -26,4 +26,3 @@ interface APIService {
         @Header("Authorization") token: String
     ): Call<ResponseDetail>
 }
-

@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.pawpal.R
 import com.capstone.pawpal.UserPreferences
-import com.capstone.pawpal.customview.CVEmail
-import com.capstone.pawpal.customview.CVPassword
 import com.capstone.pawpal.dataStore
 import com.capstone.pawpal.databinding.ActivityMainBinding
 import com.capstone.pawpal.dataclass.LoginDataAccount

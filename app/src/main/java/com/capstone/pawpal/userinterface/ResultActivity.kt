@@ -7,8 +7,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.pawpal.R
+import com.capstone.pawpal.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var resultBinding: ActivityResultBinding
 
     private lateinit var ivBackArrow: ImageView
     private lateinit var resultText: TextView
@@ -19,7 +21,8 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        resultBinding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(resultBinding.root)
 
         ivBackArrow = findViewById(R.id.ivBackArrow)
         resultText = findViewById(R.id.result_text)
@@ -36,6 +39,7 @@ class ResultActivity : AppCompatActivity() {
         // Retrieve and display the analysis result
         val analyzedResult = intent.getStringExtra("ANALYSIS_RESULT")
         resultText.text = analyzedResult
+
     }
 
     private fun navigateToAdd() {
