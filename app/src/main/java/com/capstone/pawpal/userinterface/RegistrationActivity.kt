@@ -84,7 +84,7 @@ class RegistrationActivity : AppCompatActivity() {
 
             if (validateInput()) {
                 val dataRegisterAccount = RegisterDataAccount(
-                    name = binding.RegistName.text.toString().trim(),
+                    username = binding.RegistName.text.toString().trim(),
                     email = binding.RegistEmail.text.toString().trim(),
                     password = binding.RegistPassword.text.toString().trim()
                 )
@@ -149,7 +149,7 @@ class RegistrationActivity : AppCompatActivity() {
             userLoginViewModel.saveLoginSession(true)
             mainViewModel.userLogin.value?.let { user ->
                 userLoginViewModel.saveToken(user.loginResult.token)
-                userLoginViewModel.saveName(user.loginResult.name)
+//                userLoginViewModel.saveName(user.loginResult.username)
             }
             navigateToHome()
         } else {
