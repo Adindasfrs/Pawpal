@@ -26,12 +26,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_URL", "\"https://9a71-180-244-138-231.ngrok-free.app/\"")
+            buildConfigField("String", "API_URL", "\"https://9cb2-180-244-138-231.ngrok-free.app\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "API_URL", "\"https://9a71-180-244-138-231.ngrok-free.app/\"")
+            buildConfigField("String", "API_URL", "\"https://9cb2-180-244-138-231.ngrok-free.app/\"")
         }
     }
     compileOptions {

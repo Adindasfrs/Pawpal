@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         ifClicked()
         playAnimation()
 
-        userLoginViewModel.getLoginSession().observe(this) { sessionTrue ->
-            if (sessionTrue) {
-                val intent = Intent(this@MainActivity, AddImageActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
-        }
+//        userLoginViewModel.getLoginSession().observe(this) { sessionTrue ->
+//            if (sessionTrue) {
+//                val intent = Intent(this@MainActivity, AddImageActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(intent)
+//            }
+//        }
 
         mainViewModel.messageLogin.observe(this) { message ->
             responseLogin(mainViewModel.isErrorLogin, message, userLoginViewModel)
@@ -53,16 +54,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun responseLogin(isError: Boolean, message: String, userLoginViewModel: UserLoginViewModel) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         if (!isError) {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            val user = mainViewModel.userLogin.value
-            userLoginViewModel.saveLoginSession(true)
-            userLoginViewModel.saveToken(user?.loginResult!!.token)
-            userLoginViewModel.saveName(user.loginResult.name)
-        } else {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            mainViewModel.userLogin.value?.let { user ->
+                user.loginResult?.let { loginResult ->
+                    userLoginViewModel.saveLoginSession(true)
+                    userLoginViewModel.saveToken(loginResult.token)
+                    val intent = Intent(this@MainActivity, AddImageActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                } ?: run {
+                    Toast.makeText(this, "Login result is null", Toast.LENGTH_SHORT).show()
+                    Log.e("LoginError", "Login result is null")
+                }
+            }
         }
     }
+
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.iconLogin, View.TRANSLATION_X, -30f, 30f).apply {

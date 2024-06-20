@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 data class RegisterDataAccount(
-    var name: String,
+    var username: String,
     var email: String,
     var password: String
 )
@@ -26,8 +26,6 @@ data class ResponseLogin(
 )
 
 data class LoginResult(
-    var userId: String,
-    var name: String,
     var token: String
 )
 
