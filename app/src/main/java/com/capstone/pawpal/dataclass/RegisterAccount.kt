@@ -29,11 +29,6 @@ data class LoginResult(
     var token: String
 )
 
-data class ResponseStory(
-    var error: String,
-    var message: String,
-    var listStory: List<StoryDetail>
-)
 
 @Parcelize
 data class StoryDetail(
