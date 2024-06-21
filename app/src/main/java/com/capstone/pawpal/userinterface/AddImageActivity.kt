@@ -117,7 +117,7 @@ class AddImageActivity : AppCompatActivity() {
         userLoginViewModel.saveName("")
 
         // Navigate to login screen (MainActivity in this example)
-        val intent = Intent(this, AddImageActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish() // Optional: Finish current activity to prevent user from returning using Back button
