@@ -37,9 +37,6 @@
             android:value="AIzaSyA6hsWWwDnc8RdSM4t5vGikGbsT2-uVums" />
 
         <activity
-            android:name=".userinterface.LanguageActivity"
-            android:exported="false" />
-        <activity
             android:name=".userinterface.CatFoodActivity"
             android:exported="false" />
         <activity
